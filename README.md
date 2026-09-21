@@ -36,3 +36,9 @@ Below is a brief summary of the QICK software capabilities.
 * [IEEE Quantum Week 2023 QICK tutorial](https://github.com/openquantumhardware/QCE2023_public)
 * [Connie Miao, Schuster Lab](https://github.com/conniemiao/slab_rfsoc_expts)
 * [Chao Zhou, Hatlab](https://github.com/PITT-HATLAB/Hatlab_RFSOC)
+
+* # To run from Python, paste these lines in
+`sudo su`
+`source /etc/profile.d/pynq_venv.sh`
+`source /etc/profile.d/xrt_setup.sh`
+
