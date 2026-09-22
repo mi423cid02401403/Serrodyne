@@ -23,12 +23,6 @@ slowing) and then hand off to a fixed multi-tone drive (trapping).
 - **Trapping**: after the sweep, one more envelope is played periodically
   at a fixed `TRAP_OFFSET_HZ` and left running until `soc.reset_gens()`.
 
-Two helpers recur throughout: `serrodyne_tone(...)` generates one
-phase-continuous sawtooth segment; `best_n_samples(...)` (added partway
-through the lineage) picks the segment length that leaves the smallest
-phase residual at the periodic buffer's loop-around point, suppressing
-sidebands.
-
 ## 2. Notebooks, in order of increasing capability
 
 - **`606_jupiter.ipynb`** — one static 4-tone buffer, no chirp, played
