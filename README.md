@@ -23,7 +23,7 @@ slowing) and then hand off to a fixed multi-tone drive (trapping).
 - **Trapping**: after the sweep, one more envelope is played periodically
   at a fixed `TRAP_OFFSET_HZ` and left running until `soc.reset_gens()`.
 
-## 2. Notebooks, in order of increasing capability
+## 2. Program
 
 - **`606_jupiter.ipynb`** — one static 4-tone buffer, no chirp, played
   once via `AveragerProgram` + `acquire_decimated` loopback to verify the
@@ -70,6 +70,8 @@ slowing) and then hand off to a fixed multi-tone drive (trapping).
   would exceed full DAC scale. **Best starting point for new work** —
   combines the timing/memory robustness of the earlier per-step sweep
   design with the calibration layer.
+
+- **`fft_serrodyne.py`** — Simulates a −300 MHz serrodyne sawtooth sampled at 9 GHz, applies an ideal 1 GHz brick-wall low-pass filter in the frequency domain, and plots the original vs. filtered waveform to show how much the sharp reset edges get rounded off by limited bandwidth. This allows us to figure out the frequency range of the amplifier we need.
 
 ## 3. Key parameters (common across notebooks)
 
