@@ -48,30 +48,28 @@ slowing) and then hand off to a fixed multi-tone drive (trapping).
   staircase phase error 4x, and external-trigger start
   (`start_src="external"`).
 
-- **`Tunable_AOM_amplitude_multi_trigger_ratio_serrodyne_chirp.ipynb`** —
-  same sweep structure, but `TONE_RATIOS`/`AMPLITUDE` become per-step
+- **`Test_tunability.ipynb`** —
+  sweep goes `CHIRP_OFFSET_START_HZ = -230 MHz → CHIRP_OFFSET_STOP_HZ = +120 MHz`,
+  while `TRAP_OFFSET_HZ = 0 MHz` — i.e. the sweep doesn't end exactly
+  at the trap frequency. `TONE_RATIOS`/`AMPLITUDE` are per-step
   arrays (`TONE_RATIOS_PER_STEP`, `AMPLITUDE_PER_STEP`), so each tone's
-  weighting can vary across the sweep. Here the sweep goes
-  `CHIRP_OFFSET_START_HZ = -230 MHz → CHIRP_OFFSET_STOP_HZ = +120 MHz`,
-  while `TRAP_OFFSET_HZ = 0 MHz` — i.e. the sweep no longer ends exactly
-  at the trap frequency. Because only phase (not frequency) is carried
-  continuously into the trap buffer, this produces a deliberate,
-  instantaneous ~120 MHz frequency jump at the sweep→trap handoff (still
-  phase-continuous, just not frequency-continuous) — accepted so the sweep
-  can reach +120 MHz before switching to the 0 MHz trap tone. +120 MHz is
-  the Doppler shift of the beam at the handoff/capture velocity, while
-  0 MHz (resonance) is right for a molecule that's essentially at rest in
-  the trap. Also adds an automatic shrink-to-fit loop for envelope memory.
-
-- **`Test_tunability.ipynb`** — same sweep as "Tunable_AOM"
-  (−230 → +120 MHz, 0 MHz trap), plus a measured EOM
+  weighting can vary across the sweep. Because only phase (not frequency)
+  is carried continuously into the trap buffer, this produces a
+  deliberate, instantaneous ~120 MHz frequency jump at the sweep→trap
+  handoff (still phase-continuous, just not frequency-continuous) —
+  accepted so the sweep can reach +120 MHz before switching to the 0 MHz
+  trap tone. +120 MHz is the Doppler shift of the beam at the
+  handoff/capture velocity, while 0 MHz (resonance) is right for a
+  molecule that's essentially at rest in the trap. Includes an automatic
+  shrink-to-fit loop for envelope memory, plus a measured EOM
   diffraction-efficiency calibration: each tone's drive amplitude is
   corrected by `get_correction_multiplier(freq)` (interpolated from
   measured data, extrapolated below −50 MHz, folded symmetrically onto
   positive offsets) so every tone gets equal diffracted power regardless
   of frequency, with `BASE_AMPLITUDE` auto-scaled down if that correction
-  would exceed full DAC scale. **Best starting point for new work** — has
-  all the timing/memory robustness of "Tunable_AOM" plus calibration.
+  would exceed full DAC scale. **Best starting point for new work** —
+  combines the timing/memory robustness of the earlier per-step sweep
+  design with the calibration layer.
 
 ## 3. Key parameters (common across notebooks)
 
